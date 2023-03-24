@@ -36,18 +36,69 @@ namespace Forca
                 {
                     Console.WriteLine("Resposta Errada! Tente novamente");
                     tentativas = tentativas + 1;
+
+                    switch (tentativas)
+                    {
+                        case 1:
+                            Console.WriteLine("  _______     ");
+                            Console.WriteLine(" |/      |    ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine("_|___         ");
+                            break;
+                        case 2:
+                            Console.WriteLine("  _______     ");
+                            Console.WriteLine(" |/      |    ");
+                            Console.WriteLine(" |      (_)   ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine("_|___         ");
+                            break;
+                        case 3:
+                            Console.WriteLine("  _______     ");
+                            Console.WriteLine(" |/      |    ");
+                            Console.WriteLine(" |      (_)   ");
+                            Console.WriteLine(" |       |    ");
+                            Console.WriteLine(" |       |    ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine("_|___         ");
+                            break;
+                        case 4:
+                            Console.WriteLine("  _______     ");
+                            Console.WriteLine(" |/      |    ");
+                            Console.WriteLine(" |      (_)   ");
+                            Console.WriteLine(" |      /|\\  ");
+                            Console.WriteLine(" |       |    ");
+                            Console.WriteLine(" |            ");
+                            Console.WriteLine("_|___         ");
+                            break;
+                        case 5:
+                            Console.WriteLine("  _______     ");
+                            Console.WriteLine(" |/      |    ");
+                            Console.WriteLine(" |      (_)   ");
+                            Console.WriteLine(" |      /|\\  ");
+                            Console.WriteLine(" |       |    ");
+                            Console.WriteLine(" |      / \\  ");
+                            Console.WriteLine("_|___         ");
+                            break;
+                    }
                 }
 
                 for (int i = 0; i < lenght; i++)
                 {
                     Console.Write(respostas[i] + " ");
                 }
+
                 if (new string(letrasDaForca) == new string(respostas))
                 {
                     Console.WriteLine("Parabéns! Você acertou a palavra!");
                     break;
                 }
             } while (tentativas < 5);
+
             if (tentativas == 5)
             {
                 Console.ReadKey();
@@ -59,6 +110,7 @@ namespace Forca
                 Console.Clear();
             }
         }
+
 
         public int Length { get; }
         static void Main(string[] args)
