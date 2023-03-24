@@ -1,10 +1,65 @@
 ﻿using System;
+using System.Drawing;
 
-
-namespace JogoDaForca
+namespace Forca
 {
     internal class Program
     {
+        static void ArrumarPalavras(string _palavras, char[] respostas)
+        {
+
+            for (int i = 0; i < _palavras.Length; i++)
+            {
+                respostas[i] = '_';
+            }
+        }
+        static void FuncionamentoDoJogo(int tentativas, int lenght, char[] letrasDaForca, char[] respostas)
+        {
+            do
+            {
+                Console.WriteLine(" ");
+                Console.WriteLine("Insira uma letra:");
+                char forca = Convert.ToChar(Console.ReadLine());
+
+                int encontrou = 0;
+
+                for (int i = 0; i < lenght; i++)
+                {
+                    if (forca == letrasDaForca[i])
+                    {
+                        respostas[i] = forca;
+                        encontrou = 1;
+                    }
+                }
+
+                if (encontrou == 0)
+                {
+                    Console.WriteLine("Resposta Errada! Tente novamente");
+                    tentativas = tentativas + 1;
+                }
+
+                for (int i = 0; i < lenght; i++)
+                {
+                    Console.Write(respostas[i] + " ");
+                }
+                if (new string(letrasDaForca) == new string(respostas))
+                {
+                    Console.WriteLine("Parabéns! Você acertou a palavra!");
+                    break;
+                }
+            } while (tentativas < 5);
+            if (tentativas == 5)
+            {
+                Console.ReadKey();
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Você perdeu o jogo :(");
+                Console.ResetColor();
+                Console.ReadKey();
+                Console.Clear();
+            }
+        }
+
         public int Length { get; }
         static void Main(string[] args)
         {
@@ -12,42 +67,12 @@ namespace JogoDaForca
             Random r = new Random();
             int posicao = r.Next(palavras.Length);
             string _palavras = palavras[posicao];
-
-            char [] letrasDaForca = _palavras.ToCharArray();
-            
-            Console.WriteLine(_palavras);
+            char[] letrasDaForca = _palavras.ToCharArray();
             int lenght = _palavras.Length;
-            Console.WriteLine(lenght);
             int tentativas = 0;
-            
-            
-
-            do
-            {
-                Console.WriteLine(" ");
-                Console.WriteLine("Insira uma letra:");
-                char forca = Convert.ToChar(Console.ReadLine());
-                
-                for (int i = 0; i < lenght; i++)
-                {
-                   if (forca == letrasDaForca[i])
-                    {
-                        Console.Write(letrasDaForca[i] = forca);
-                        
-                        
-                  
-                        
-                    }
-                   else if (forca != letrasDaForca[i])
-                    {
-                        Console.Write("_");
-                        
-                    }
-                  
-
-
-                }
-            } while (tentativas < 5) ;
+            char[] respostas = new char[_palavras.Length];
+            ArrumarPalavras(_palavras, respostas);
+            FuncionamentoDoJogo(tentativas, lenght, letrasDaForca, respostas);
         }
     }
 }
